@@ -1,1 +1,69 @@
-<div class="actions"> <%= button_to 'Turn Off', 'outlets/turn_off', :class => "button", :controller => :outlets, :action => :turn_off, :method => :get %> </div>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+</head>
+<body>
+
+<br><br><h2 align="left"> Living Room </h2>
+<div class="actions", style="float:left;"> <%= button_to 'Turn On', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "living_room-on"}, :method => :post %> </div>
+<div class="actions"> <%= button_to 'Turn Off', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "living_room-off"}, :method => :post %> </div>
+
+<h2 align="left"> Master Bed Room </h2>
+<div class="actions", style="float:left;"> <%= button_to 'Turn On', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "master_bed_room-on"}, :method => :post %> </div>
+<div class="actions"> <%= button_to 'Turn Off', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "master_bed_room-off"}, :method => :post %> </div>
+
+<h2 align="left"> Guest Bed Room </h2>
+<div class="actions", style="float:left;"> <%= button_to 'Turn On', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "guest_bed_room-on"}, :method => :post %> </div>
+<div class="actions"> <%= button_to 'Turn Off', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "guest_bed_room-off"}, :method => :post %> </div>
+
+<h2 align="left"> Puja Room </h2>
+<div class="actions", style="float:left;"> <%= button_to 'Turn On', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "puja_room-on"}, :method => :post %> </div>
+<div class="actions"> <%= button_to 'Turn Off', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "puja_room-off"}, :method => :post %> </div>
+
+<h2 align="left"> ALL Rooms </h2>
+<div class="actions", style="float:left;"> <%= button_to 'Turn On', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "all-on"}, :method => :post %> </div>
+<div class="actions"> <%= button_to 'Turn Off', 'outlets/run_command', :class => "button", :controller => :outlets, :action => :run_command, params:{code_name: "all-off"}, :method => :post %> </div>
+
+</body>
+</html>
+
