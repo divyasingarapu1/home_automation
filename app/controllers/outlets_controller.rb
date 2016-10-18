@@ -5,10 +5,11 @@ class OutletsController < ApplicationController
   def index
 
     $outlet_codes = {
-      "living_room" => {"on" => 5313843, "off" => 5313852},
-      "master_bed_room" => {"on" => 5314307, "off" => 5314316},
-      "guest_bed_room" => {"on" => 5313987, "off" => 5313996},
-      "puja_room" => {"on" => 5315843, "off" => 5315852}
+      "living_room" => {"on" => 5313843, "off" => 5313852, "pulse" => 188},
+      "master_bed_room" => {"on" => 5314307, "off" => 5314316, "pulse" => 188},
+      "guest_bed_room" => {"on" => 5313987, "off" => 5313996, "pulse" => 188},
+      "puja_room" => {"on" => 5315843, "off" => 5315852, "pulse" => 188},
+      "kitchen" => {"on" => 14984199, "off" => 14984198, "pulse" => 213}
     }
   end
 
@@ -20,14 +21,16 @@ class OutletsController < ApplicationController
         codes << v[command[1]]
       }
     else 
-      codes << $outlet_codes[command[0]][command[1]]
+      codes << "#{$outlet_codes[command[0]][command[1]]}-#{$outlet_codes[command[0]]['pulse']}"
     end
  
-    codes.each { |code| 
+    codes.each { |e| 
+      code_pulse = e.split("-")
+      code = code_pulse[0]
+      pulse = code_pulse[1]
       p command
-      p "Code is #{code}" 
-      # `rake turn_on_off[#{code}]`
-      `/home/pi/Documents/home_automation/scripts/turn_on_off.sh #{code}`
+      p "Code is #{code}, Pulse is #{pulse}" 
+      `/home/pi/Documents/home_automation/scripts/turn_on_off.sh #{code} #{pulse}`
     }
     redirect_to action: :index
   end
